@@ -1,0 +1,145 @@
+openapi: 3.0.0
+info:
+  title: Pet Store - Products API
+  description: API for managing pet store products with filtering, sorting, and pagination.
+  version: 1.0.0
+servers:
+  - url: http://localhost:5002
+    description: Local development server
+
+paths:
+  /api/products:
+    get:
+      summary: Retrieve all products with filtering, sorting, and pagination
+      parameters:
+        - name: page
+          in: query
+          description: Page number for pagination
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: limit
+          in: query
+          description: Number of items per page
+          required: false
+          schema:
+            type: integer
+            default: 10
+        - name: filter_key
+          in: query
+          description: The key to filter products by (e.g., "category")
+          required: false
+          schema:
+            type: string
+        - name: filter_value
+          in: query
+          description: The value to filter products by (e.g., "cat-001")
+          required: false
+          schema:
+            type: string
+        - name: sort_by
+          in: query
+          description: Sort results by a specific field (e.g., "price")
+          required: false
+          schema:
+            type: string
+        - name: order
+          in: query
+          description: Sort order (asc or desc)
+          required: false
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: asc
+      responses:
+        "200":
+          description: Returns a paginated list of products with filtering and sorting
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  page:
+                    type: integer
+                  limit:
+                    type: integer
+                  total:
+                    type: integer
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        price:
+                          type: number
+                        category:
+                          type: string
+                        stock:
+                          type: integer
+        "400":
+          description: Invalid query parameters
+
+    post:
+      summary: Add a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "New Product"
+                description:
+                  type: string
+                  example: "High-quality pet product"
+                price:
+                  type: number
+                  example: 25.99
+                category:
+                  type: string
+                  example: "cat-001"
+                stock:
+                  type: integer
+                  example: 100
+              required:
+                - name
+                - description
+                - price
+                - category
+                - stock
+      responses:
+        "201":
+          description: Product successfully created
+        "400":
+          description: Invalid request data
+
+  /api/products/{product_id}:
+    get:
+      summary: Get product details
+      parameters:
+        - name: product_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Returns product details
+        "404":
+          description: Product not found
+
+  /health:
+    get:
+      summary: Health check endpoint
+      responses:
+        "200":
+          description: Service is running

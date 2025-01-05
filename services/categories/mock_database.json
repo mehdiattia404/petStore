@@ -1,0 +1,20 @@
+{
+    "categories": [
+      {
+        "id": "cat-001",
+        "name": "Accessoires",
+        "description": "Colliers, laisses, jouets, et autres accessoires."
+      },
+      {
+        "id": "cat-002",
+        "name": "Hygiène",
+        "description": "Shampoings, litières, et produits de soins."
+      },
+      {
+        "id": "cat-003",
+        "name": "Nourriture",
+        "description": "Croquettes, pâtées et compléments alimentaires."
+      }
+    ]
+  }
+  

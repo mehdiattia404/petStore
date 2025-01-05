@@ -1,0 +1,208 @@
+openapi: 3.0.0
+info:
+  title: Pets API
+  description: API for managing pets
+  version: 1.0.0
+
+paths:
+  /api/pets:
+    get:
+      summary: Retrieve all pets (with filtering & pagination)
+      parameters:
+        - name: owner_id
+          in: query
+          description: Filter pets by owner ID
+          required: false
+          schema:
+            type: string
+        - name: species
+          in: query
+          description: Filter pets by species (e.g., "Perro", "Gato")
+          required: false
+          schema:
+            type: string
+        - name: breed
+          in: query
+          description: Filter pets by breed (e.g., "Golden Retriever")
+          required: false
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: Page number for pagination
+          required: false
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: Number of items per page
+          required: false
+          schema:
+            type: integer
+        - name: sort_by
+          in: query
+          description: Field to sort by (e.g., name, species, createdAt)
+          required: false
+          schema:
+            type: string
+        - name: order
+          in: query
+          description: Sorting order (asc or desc)
+          required: false
+          schema:
+            type: string
+            enum: [asc, desc]
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Pet"
+        "400":
+          description: Invalid request
+
+    post:
+      summary: Add a new pet
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Pet"
+      responses:
+        "201":
+          description: Pet added successfully
+        "400":
+          description: Invalid request data
+
+  /api/pets/{pet_id}:
+    get:
+      summary: Retrieve a single pet
+      parameters:
+        - name: pet_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pet"
+        "404":
+          description: Pet not found
+
+    delete:
+      summary: Delete a pet
+      parameters:
+        - name: pet_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Pet deleted successfully
+        "404":
+          description: Pet not found
+
+  /api/pets/recommendations:
+    get:
+      summary: Get product recommendations based on the user's pets
+      parameters:
+        - name: owner_id
+          in: query
+          description: User ID to retrieve recommendations for all their pets
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of recommended products
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  owner_id:
+                    type: string
+                  pets:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Pet"
+                  recommended_products:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Product"
+        "400":
+          description: Missing owner_id parameter
+        "404":
+          description: No pets found for this owner
+
+  /health:
+    get:
+      summary: Health check
+      responses:
+        "200":
+          description: API is running
+
+components:
+  schemas:
+    Pet:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        species:
+          type: string
+        breed:
+          type: string
+        age:
+          type: integer
+        owner_id:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - name
+        - species
+        - breed
+        - age
+        - owner_id
+
+    Product:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        price:
+          type: number
+        category:
+          type: string
+        animalType:
+          type: string
+        stock:
+          type: integer
+        averageRating:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - price
+        - category
+        - animalType

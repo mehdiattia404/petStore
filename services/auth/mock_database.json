@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": "user-001",
+      "username": "johndoe",
+      "email": "john.doe@example.com",
+      "password": "hashed_password_here",
+      "role": "customer"
+    }
+  ]
+}

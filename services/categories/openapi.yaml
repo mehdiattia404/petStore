@@ -1,0 +1,81 @@
+openapi: 3.0.0
+info:
+  title: Categories API
+  description: API for managing categories
+  version: 1.0.0
+paths:
+  /api/categories:
+    get:
+      summary: Retrieve all categories
+      parameters:
+        - name: page
+          in: query
+          description: Page number for pagination
+          required: false
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: Number of items per page
+          required: false
+          schema:
+            type: integer
+        - name: q
+          in: query
+          description: Filter by category name
+          required: false
+          schema:
+            type: string
+        - name: sort_by
+          in: query
+          description: Field to sort by
+          required: false
+          schema:
+            type: string
+        - name: order
+          in: query
+          description: Sorting order (asc or desc)
+          required: false
+          schema:
+            type: string
+            enum: [asc, desc]
+      responses:
+        "200":
+          description: Successful response
+        "400":
+          description: Invalid request
+    post:
+      summary: Add a new category
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+              required:
+                - name
+                - description
+      responses:
+        "201":
+          description: Category added successfully
+        "400":
+          description: Invalid request
+  /api/categories/{category_id}:
+    get:
+      summary: Retrieve a category by ID
+      parameters:
+        - name: category_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful response
+        "404":
+          description: Category not found

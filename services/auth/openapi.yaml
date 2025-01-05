@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  title: Pet Store - Authentication API
+  description: API for user authentication and JWT token management.
+  version: 1.0.0
+servers:
+  - url: http://localhost:5001
+    description: Local development server
+
+paths:
+  /api/auth/register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "newuser"
+                email:
+                  type: string
+                  format: email
+                  example: "newuser@example.com"
+                password:
+                  type: string
+                  format: password
+                  example: "securepassword"
+      responses:
+        "201":
+          description: User registered successfully
+        "400":
+          description: User already exists
+
+  /api/auth/login:
+    post:
+      summary: User login and JWT token generation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: "johndoe"
+                password:
+                  type: string
+                  format: password
+                  example: "password123"
+      responses:
+        "200":
+          description: Returns a JWT token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        "401":
+          description: Invalid credentials
+
+  /api/auth/me:
+    get:
+      summary: Get user details from JWT token
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          description: JWT access token (Bearer)
+          required: true
+          schema:
+            type: string
+            example: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+      responses:
+        "200":
+          description: Returns the user details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "user-123"
+                  username:
+                    type: string
+                    example: "johndoe"
+                  role:
+                    type: string
+                    example: "customer"
+        "401":
+          description: Unauthorized request
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

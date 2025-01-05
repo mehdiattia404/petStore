@@ -1,0 +1,6 @@
+flask
+flask-cors
+flask-swagger-ui
+flask-jwt-extended
+python-dotenv
+jsonschema

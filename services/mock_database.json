@@ -1,0 +1,83 @@
+{
+  "products": [
+    {
+      "id": "prod-001",
+      "name": "Collar de Cuero Premium",
+      "description": "Collar de cuero genuino para perros de tamaño mediano",
+      "price": 29.99,
+      "category": "cat-001",
+      "animalType": "Perro",
+      "brand": "PetStyle",
+      "stock": 50,
+      "images": ["https://example.com/images/collar1.jpg"],
+      "averageRating": 4.5,
+      "createdAt": "2023-01-15T10:30:00Z"
+    }
+  ],
+
+  "categories": [
+    {
+      "id": "cat-001",
+      "name": "Accesorios",
+      "description": "Collares, correas y más para tus mascotas",
+      "imageUrl": "https://example.com/images/accessories.jpg",
+      "active": true
+    }
+  ],
+
+  "users": [
+    {
+      "id": "user-001",
+      "username": "johndoe",
+      "email": "john.doe@example.com",
+      "password": "hashed_password_here",
+      "role": "customer",
+      "createdAt": "2023-01-01T00:00:00Z"
+    }
+  ],
+
+  "cart": [
+    {
+      "id": "cart-001",
+      "userId": "user-001",
+      "items": [
+        {
+          "productId": "prod-001",
+          "quantity": 1,
+          "price": 29.99
+        }
+      ],
+      "totalAmount": 29.99,
+      "createdAt": "2023-05-26T10:00:00Z"
+    }
+  ],
+
+  "orders": [
+    {
+      "id": "order-001",
+      "userId": "user-001",
+      "items": [
+        {
+          "productId": "prod-001",
+          "quantity": 1,
+          "price": 29.99
+        }
+      ],
+      "totalAmount": 29.99,
+      "orderStatus": "shipped",
+      "createdAt": "2023-05-20T15:30:00Z"
+    }
+  ],
+
+  "reviews": [
+    {
+      "id": "review-001",
+      "productId": "prod-001",
+      "userId": "user-001",
+      "rating": 5,
+      "title": "¡Excelente collar!",
+      "comment": "Mi perro adora este collar.",
+      "createdAt": "2023-05-22T14:30:00Z"
+    }
+  ]
+}

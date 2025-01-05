@@ -1,0 +1,49 @@
+{
+    "orders": [
+        {
+            "id": "order-001",
+            "userId": "user-001",
+            "items": [
+                {
+                    "productId": "prod-001",
+                    "quantity": 1,
+                    "price": 29.99
+                }
+            ],
+            "totalAmount": 29.99,
+            "orderStatus": "shipped",
+            "createdAt": "2023-05-20T15:30:00Z"
+        },
+        {
+            "id": "order-2",
+            "user_id": "user-001",
+            "cart_items": [
+                {
+                    "productId": "prod-001",
+                    "quantity": 2,
+                    "price": 29.99
+                }
+            ],
+            "total_price": 59.98,
+            "status": "delivered",
+            "createdAt": "2025-01-04T13:17:00.905016Z"
+        }
+    ],
+    "products": [
+        {
+            "id": "prod-001",
+            "name": "Collar de Cuero Premium",
+            "description": "Collar de cuero genuino para perros de tama\u00c3\u00b1o mediano",
+            "price": 29.99,
+            "category": "cat-001",
+            "animalType": "Perro",
+            "brand": "PetStyle",
+            "stock": 48,
+            "images": [
+                "https://example.com/images/collar1.jpg"
+            ],
+            "averageRating": 4.5,
+            "createdAt": "2023-01-15T10:30:00Z"
+        }
+    ]
+}

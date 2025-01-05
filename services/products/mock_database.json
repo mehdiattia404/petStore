@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "id": "prod-001",
+      "name": "Collier en cuir pour chien",
+      "description": "Collier de haute qualité pour chien",
+      "price": 25.99,
+      "category": "cat-001",
+      "stock": 100
+    },
+    {
+      "id": "prod-002",
+      "name": "Litière pour chat",
+      "description": "Litière parfumée biodégradable",
+      "price": 15.50,
+      "category": "cat-002",
+      "stock": 50
+    },
+    {
+      "id": "prod-003",
+      "name": "Croquettes premium pour chien",
+      "description": "Nourriture sèche premium pour chien adulte",
+      "price": 40.00,
+      "category": "cat-003",
+      "stock": 30
+    }
+  ]
+}

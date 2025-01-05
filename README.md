@@ -17,15 +17,11 @@ La **API de Tienda de Mascotas** está basada en una **arquitectura de microserv
 ## 📌 **Estructura del Proyecto**
 ```
 .
-├── build_services.bat
+├── Dockerfile
 ├── start_services.bat
 ├── docker-compose.yml
 ├── architecture.drawio
-├── database/
-├── deployment/
 ├── docker/
-├── docs/
-├── scripts/
 └── services/
     ├── api-gateway/
     ├── auth/
@@ -45,8 +41,8 @@ La **API de Tienda de Mascotas** está basada en una **arquitectura de microserv
 
 ### **1️⃣ Clonar el Repositorio**
 ```bash
-git clone https://github.com/your-repo/petstore-api.git
-cd petstore-api
+git clone https://github.com/mehdiattia404/petStore.git
+
 ```
 
 ### **2️⃣ Configuración del Entorno**
